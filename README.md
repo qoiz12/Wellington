@@ -13,7 +13,7 @@ Linux: Run the install_dependencies.sh, Have FLASK and Flask-HTTPAuth Installed.
   
 Windows: python3 and PIP, Chromium. FOR PYTHON: requests beautifulsoup4 selenium webdriver-manager Flask-HTTPAuth.  
 ### Guide
-Note: If you're running it on a remote server port forward 6945 before running Wellington.  
+**Note: If you're running it on a remote server, port forward the 6945 port before running Wellington.**  
 Step 1. Download the latest release. 
 Step 2. Move the control-panel.html and the index.html into a folder named "templates".  
 Step 3. Create the "screenshots" directory and create the "scams.txt" file inside the templates folder.  
