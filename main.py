@@ -38,7 +38,7 @@ SCREENSHOT_DIR = "screenshots"
 scams_txt = "scams.txt"
 
 # Credit
-print("Created by Qoiz12, Hosted on Netcup.")
+print("Created by Qoiz12.")
 
 # URL to the page containing newly registered domains
 DOMAINS_URL = "https://shreshtait.com/newly-registered-domains/nrd-1w"
@@ -47,7 +47,7 @@ DOMAINS_URL = "https://shreshtait.com/newly-registered-domains/nrd-1w"
 REQUEST_TIMEOUT = 45
 
 # File to store scanned domains and their timestamps
-SCANNED_DOMAINS_FILE = "scanned_domains.json"
+SCANNED_DOMAINS_FILE = "scanned_domains.json" # This is mainly for Wellington and if you want a list of scam domains, use scams.txt instead.
 
 # Function to load scanned domains from the JSON file
 def load_scanned_domains():
