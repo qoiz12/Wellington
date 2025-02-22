@@ -2,7 +2,8 @@
 A Scanner/Scraper that finds Scam Sites.
 ### TODO
 - [ ] Make it find and attribute/tag those your-file-is-ready-to-download.zip scam sites.
-- [ ] Find a better Newly Registered Domains list.
+- [ ] Create API and documentation (mainly for get requests).
+- [x] Find a better Newly Registered Domains list.
 
 # Setup
 ### Packages
@@ -20,3 +21,5 @@ Step 6. Kill the main.py task, open the main.py file and change the Username and
 Step 7. Port Forward Port 6945.  
 Step 8. Go to http://YOUR-IP:6945/ (change YOUR-IP to your server or computer's IP).  
 Step 9. If all is seemingly working, visit http://YOUR-IP:6945/control-panel then enter the username and password you put in the main.py. Once logged in, press the start scan button.
+# API
+Lorem Ipsum...
