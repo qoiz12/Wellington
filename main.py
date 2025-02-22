@@ -41,7 +41,7 @@ scams_txt = "scams.txt"
 print("Created by Qoiz12.")
 
 # URL to the page containing newly registered domains
-DOMAINS_URL = "https://shreshtait.com/newly-registered-domains/nrd-1w"
+DOMAINS_URL = "https://raw.githubusercontent.com/xRuffKez/NRD/refs/heads/main/lists/14-day/domains-only/nrd-14day.txt"
 
 # Timeout for requests (in seconds)
 REQUEST_TIMEOUT = 45
@@ -79,8 +79,8 @@ def read_domains_from_webpage(url):
     try:
         response = requests.get(url, timeout=REQUEST_TIMEOUT)
         response.raise_for_status()
-        soup = BeautifulSoup(response.text, 'html.parser')
-        domains = [line.strip() for line in soup.get_text().splitlines() if line.strip()]
+        # Split the text into lines and start from line 12 (index 11 since 0-based)
+        domains = [line.strip() for line in response.text.splitlines()[11:] if line.strip()]
         return domains
     except Exception as e:
         print(f"Error reading domains from {url}: {e}")
