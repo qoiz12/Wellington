@@ -6,9 +6,9 @@ A Scanner/Scraper that finds Scam Sites.
 
 # Setup
 ### Packages
-Linux: Run the install_dependencies.sh, Have FLASK Installed.  
+Linux: Run the install_dependencies.sh, Have FLASK and Flask-HTTPAuth Installed.  
   
-Windows: python3 and PIP, Chromium. FOR PYTHON: requests beautifulsoup4 selenium webdriver-manager.  
+Windows: python3 and PIP, Chromium. FOR PYTHON: requests beautifulsoup4 selenium webdriver-manager Flask-HTTPAuth.  
 ### Guide
 Step 1. Run the main.py and wait until it starts saying scanning ... etc.  
 Step 2. Kill the Main.py task.  
