@@ -4,6 +4,7 @@ A Scanner/Scraper that finds Scam Sites.
 - [ ] **FOCUS:** Improve the control panel, add a CLI preview maybe?
 - [ ] **FOCUS:** Create API and documentation (mainly for GET requests).
 - [ ] **FOCUS:** Release SSL Version (does exist in my version).
+- [ ] Publish Repo.
 - [ ] Make it find and attribute/tag those your-file-is-ready-to-download.zip scam sites.
 - [x] Find a better Newly Registered Domains list.
 
