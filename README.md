@@ -8,7 +8,7 @@ A Scanner/Scraper that finds Scam Sites.
 ### Packages
 Linux: Run the install_dependencies.sh, Have FLASK Installed.  
   
-Windows: python3  Chromium flask python3-pip requests beautifulsoup4 selenium webdriver-manager.  
+Windows: python3 and PIP, Chromium. FOR PYTHON: requests beautifulsoup4 selenium webdriver-manager.  
 ### Guide
 Step 1. Run the main.py and wait until it starts saying scanning ... etc.  
 Step 2. Kill the Main.py task.  
