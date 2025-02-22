@@ -13,7 +13,7 @@ Windows: python3 and PIP, Chromium. FOR PYTHON: requests beautifulsoup4 selenium
 ### Guide
 Step 1. Run the main.py and wait until it starts saying scanning ... etc.  
 Step 2. Kill the Main.py task.  
-Step 3. Move the control-panel.html and the index.html into a folder named "templates".  
+Step 3. Download the control-panel.html and the index.html from the web directory in the repo, then move them into a folder named "templates".  
 Step 4. Create the screenshots directory and create the scams.txt file.  
 Step 5. Run the main.py and check if it is scanning.  
 Step 6. Kill the main.py task, open the main.py file and change the Username and Password using nano or another IDE.  
