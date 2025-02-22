@@ -20,6 +20,7 @@ Step 6. Kill the main.py task, open the main.py file and change the Username and
 ### Optional
 Step 7. Port Forward Port 6945.  
 Step 8. Go to http://YOUR-IP:6945/ (change YOUR-IP to your server or computer's IP).  
-Step 9. If all is seemingly working, visit http://YOUR-IP:6945/control-panel then enter the username and password you put in the main.py. Once logged in, press the start scan button.
+Step 9. If all is seemingly working, visit http://YOUR-IP:6945/control-panel then enter the username and password you put in the main.py. Once logged in, press the start scan button.  
+Installing SSL, It is optional but you really should.
 # API
 Lorem Ipsum...
