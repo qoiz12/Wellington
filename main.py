@@ -370,12 +370,4 @@ def robots_txt():
 
 # Example usage
 if __name__ == "__main__":
-    ZIP_URL = "https://whoisds.com//whois-database/newly-registered-domains/MjAyNS0wMS0yNi56aXA=/nrd"
-    ZIP_FILE = "newly_registered_domains.zip"
-    EXTRACT_DIR = "extracted_domains"
-    output_json = "scam_popups_results.json"
-    SCREENSHOT_DIR = "screenshots"
-    scams_txt = "scams.txt"
-
-    # Run the Flask app
     app.run(host='0.0.0.0', port=6945, debug=True)
