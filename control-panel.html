@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        h1, p {
+            text-align: center;
+            color: white;
+        }
+        body {
+            background-color: #0f0803;
+        }
+        .category-section {
+            margin: 20px 0;
+        }
+        .category-title {
+            font-size: 1.5em;
+            color: white;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .scan-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .container {
+            text-align: center;
+            margin: 10px;
+        }
+        .container img {
+            width: 400px;
+            height: 400px;
+        }
+    </style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Panel</title>
+</head>
+<body>
+    <h1>Welcome to the Control Panel</h1>
+    <p>Use this interface to manage the application.</p>
+    <button id="scan-button">Start Scan</button>
+    <script>
+        document.getElementById('scan-button').addEventListener('click', () => {
+            fetch('/run_command', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ command: 'scan' }),
+            })
+            .then(response => response.json())
+            .then(data => alert(data.message))
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
