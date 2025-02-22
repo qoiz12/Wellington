@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!-- Styling for Page -->
+<style>
+    h1, p {
+        text-align: center;
+        color: white;
+    }
+    body {
+        background-color: #0f0803;
+    }
+    .category-section {
+        margin: 20px 0;
+    }
+    .category-title {
+        font-size: 1.5em;
+        color: white;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .popups {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .container {
+        text-align: center;
+        margin: 10px;
+    }
+    .container img {
+        width: 400px;
+        height: 400px;
+    }
+</style>
+<body>
+    <h1>Wellington Pop-Up Scanner</h1>
+    <br>
+    <p>Found Pop-Ups:</p>
+    <!-- Pop-Ups To Be Listed -->
+    <div id="popups">
+        <!-- Very Likely Scams -->
+        <div class="category-section">
+            <div class="category-title" style="color: #ff4444;">Very Likely Scams</div>
+            <div id="very-likely" class="popups"></div>
+        </div>
+        <!-- Potential Scams -->
+        <div class="category-section">
+            <div class="category-title" style="color: #ffd700;">Potential Scams</div>
+            <div id="potential" class="popups"></div>
+        </div>
+    </div>
+
+    <script>
+        // Function to fetch and parse scams.txt
+        function fetchAndParseScams() {
+            fetch('/templates/scams.txt')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch scams.txt');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    const lines = data.split('\n').filter(line => line.trim() !== '');
+                    const veryLikelyDiv = document.getElementById('very-likely');
+                    const potentialDiv = document.getElementById('potential');
+                    veryLikelyDiv.innerHTML = ''; // Clear existing content
+                    potentialDiv.innerHTML = ''; // Clear existing content
+
+                    let currentDomain = '';
+                    let currentCategory = '';
+                    let rowDiv = null;
+                    let scamCount = 0;
+
+                    console.log('Parsing scams.txt...');
+                    lines.forEach((line, index) => {
+                        if (line.startsWith('Scam found:')) {
+                            currentDomain = line.replace('Scam found: ', '').trim();
+                            // Remove http:// or https:// from the domain
+                            currentDomain = currentDomain.replace(/^https?:\/\//, '');
+                            console.log('Found domain:', currentDomain);
+                        } else if (line.startsWith('Category:')) {
+                            currentCategory = line.replace('Category: ', '').trim().toLowerCase();
+                            console.log('Found category:', currentCategory);
+                        }
+
+                        // Check if this is the last line or if the next line starts a new scam
+                        const isLastLine = index === lines.length - 1;
+                        const isEndOfScam = isLastLine || lines[index + 1].startsWith('Scam found:');
+
+                        if (isEndOfScam && currentDomain && currentCategory) {
+                            console.log('Rendering scam:', currentDomain, 'Category:', currentCategory);
+
+                            const domainElement = document.createElement('p');
+                            domainElement.textContent = currentDomain;
+                            domainElement.style.color = currentCategory === 'very likely' ? '#ff4444' : '#ffd700';
+
+                            const imgElement = document.createElement('img');
+                            imgElement.src = `/templates/screenshots/${currentDomain}.png`;
+                            imgElement.alt = `Screenshot Of ${currentDomain}`;
+                            imgElement.width = 400;
+                            imgElement.height = 400;
+
+                            // Log the image source for debugging
+                            console.log('Image source:', imgElement.src);
+
+                            const containerDiv = document.createElement('div');
+                            containerDiv.className = 'container';
+                            containerDiv.appendChild(domainElement);
+                            containerDiv.appendChild(imgElement);
+
+                            // Determine which category div to append to
+                            const targetDiv = currentCategory === 'very likely' ? veryLikelyDiv : potentialDiv;
+
+                            if (scamCount % 5 === 0) {
+                                rowDiv = document.createElement('div');
+                                rowDiv.style.display = 'flex';
+                                rowDiv.style.justifyContent = 'center';
+                                rowDiv.style.flexWrap = 'wrap';
+                                targetDiv.appendChild(rowDiv);
+                            }
+                            rowDiv.appendChild(containerDiv);
+                            scamCount++;
+
+                            // Reset for the next scam
+                            currentDomain = '';
+                            currentCategory = '';
+                        }
+                    });
+
+                    if (scamCount === 0) {
+                        console.warn('No scams found in scams.txt or file is empty.');
+                    }
+                })
+                .catch(error => console.error('Error fetching or parsing scams.txt:', error));
+        }
+
+        // Wait for 1 second before fetching scams.txt
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Waiting 1 second before fetching scams.txt...');
+            setTimeout(fetchAndParseScams, 1000); // Wait 1 second (1000 milliseconds)
+        });
+    </script>
+</body>
