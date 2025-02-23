@@ -10,9 +10,8 @@ A Scanner/Scraper that finds Scam Sites and ranks them by potential and very lik
 
 # Setup
 ### Packages
-Linux: Run the install_dependencies.sh, Have FLASK and Flask-HTTPAuth Installed.  
-  
-Windows: python3 and PIP, Chromium. FOR PYTHON: requests beautifulsoup4 selenium webdriver-manager Flask-HTTPAuth.  
+Linux: Run the install_dependencies.sh.
+Windows: Run the install_dependencies.bat
 ### Guide
 **Note: If you're running it on a remote server, port forward the 6945 port before running Wellington.**  
 Step 1. Download the latest release. 
