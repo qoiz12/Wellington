@@ -1,5 +1,5 @@
 # Wellington
-A Scanner/Scraper that finds Scam Sites.
+A Scanner/Scraper that finds Scam Sites and ranks them by potential and very likely.
 ### TODO
 - [ ] **FOCUS:** Improve the control panel, add a CLI preview maybe?
 - [ ] **FOCUS:** Create API and documentation (mainly for GET requests).
