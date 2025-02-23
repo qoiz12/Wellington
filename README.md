@@ -14,7 +14,7 @@ Linux: Run the install_dependencies.sh.
 Windows: Run the install_dependencies.bat
 ### Guide
 **Note: If you're running it on a remote server, port forward the 6945 port before running Wellington.**  
-Step 1. Download the latest release. 
+Step 1. Download the latest release.  
 Step 2. Move the control-panel.html and the index.html into a folder named "templates".  
 Step 3. Create the "screenshots" directory and create the "scams.txt" file inside the templates folder.  
 Step 4. Run the main.py and visit http://YOUR-IP:6945/control-panel (change YOUR-IP to your server or computer's IP) and enter USER as the Username and PASS as the Password. After, press the start button. Then go back to the terminal/cmd wait a little bit then check if it is scanning sites.  
