@@ -22,7 +22,7 @@ Step 5. Kill (CTRL+C) the main.py task, open the main.py file and change the Use
 Step 6. Visit the control panel and use the password and username you set earlier, if it lets you in; you have followed the guide correctly!
 ### Optional
 Step 7. Port Forward Port 6945 if you haven't already.  
-Step 8. Go to http://YOUR-IP:6945/ (change YOUR-IP to your server or computer's IP).  
+Step 8. Go to http://YOUR-IP:6945/ on another device (change YOUR-IP to your server or computer's IP).  
 Step 9. If all is seemingly working, visit http://YOUR-IP:6945/control-panel then enter the username and password you put in the main.py. Once logged in, press the start scan button.  
 Step 10. Installing SSL: It is optional but I strongly believe that you should install it.  
 # API
