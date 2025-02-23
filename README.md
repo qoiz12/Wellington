@@ -10,7 +10,7 @@ A Scanner/Scraper that finds Scam Sites and ranks them by potential and very lik
 
 # Setup
 ### Packages
-Linux: Run the install_dependencies.sh.
+Linux: Run the install_dependencies.sh.  
 Windows: Run the install_dependencies.bat
 ### Guide
 **Note: If you're running it on a remote server, port forward the 6945 port before running Wellington.**  
