@@ -31,6 +31,6 @@ sudo apt-get install -y libnss3 libgconf-2-4 libxi6 libgdk-pixbuf2.0-0 libxcompo
 
 # Install Python dependencies
 echo "Installing Python dependencies..."
-pip3 install requests beautifulsoup4 selenium webdriver-manager
+pip3 install requests beautifulsoup4 selenium webdriver-manager flask Flask-HTTPAuth
 
 echo "All dependencies installed successfully!"
