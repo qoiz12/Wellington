@@ -2,9 +2,9 @@
 A Scanner/Scraper that finds Scam Sites and ranks them by potential and very likely. Comes with NO WARRANTY!
 ### TODO
 - [ ] **FOCUS:** Improve the control panel, add a CLI preview maybe?
-- [ ] **FOCUS:** Create API and documentation (mainly for GET requests).
 - [ ] **FOCUS:** Release SSL Version (does exist in my private version).
 - [ ] Make a version that finds and attributes/tags those Your File Is Ready To Download malware sites.
+- [X] Create API and documentation (mainly for POST requests).
 - [x] Publish Repo.
 - [x] Find a better Newly Registered Domains list.
 
@@ -25,5 +25,31 @@ Step 7. Port Forward Port 6945 if you haven't already.
 Step 8. Go to http://YOUR-IP:6945/ on another device (change YOUR-IP to your server or computer's IP).  
 Step 9. If all is seemingly working, visit http://YOUR-IP:6945/control-panel then enter the username and password you put in the main.py. Once logged in, press the start scan button.  
 Step 10. Installing SSL: It is optional but I strongly believe that you should install it.  
-# API
-You can use this as an API to find scam sites if you are hosting it. Here's how: Lorem Ipsum...  
+Step 11. Change the API_KEY = "your-secret-api-key"  (replacing the quoted text with a secure API key) on line 35 in the main.py file.  
+# POST API
+### List of filters (the / separates the options):  
+```
+'{
+    "filter": {
+        "category": "potential/very likely" //This can be removed to show all urls no matter the category.
+    },
+    "urls_only": true/false
+    
+}'
+```
+"urls_only" will return with just the urls, "category" filters urls by the 2 categories (if you want all urls, remove the "category" argument).  
+  
+### Example Request (Curl):
+```
+curl -X POST http://SERVER-IP:6945/api \
+-H "Content-Type: application/json" \
+-H "X-API-Key: your-secret-api-key" \
+-d '{
+    "filter": {
+        "category": "potential"
+    },
+    "urls_only": false
+    
+} '
+```
+Returns all urls under the "potential" category.

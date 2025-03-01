@@ -31,6 +31,13 @@ def verify_password(username, password):
     if username == USERNAME and check_password_hash(PASSWORD_HASH, password):
         return username
 
+# API Key Authentication
+API_KEY = "your-secret-api-key"  # Replace with a secure API key
+
+def verify_api_key(api_key):
+    """Verify if the provided API key matches the expected key."""
+    return api_key == API_KEY
+
 # Global variables
 EXTRACT_DIR = "extracted_domains"
 output_json = "scam_popups_results.json"
@@ -350,10 +357,67 @@ def run_command():
         return jsonify({"message": "Scan started!"})
     return jsonify({"error": "Unknown command"}), 400
 
-# Serve static files from the /templates/ folder
-@app.route('/templates/<path:filename>')
-def serve_template_file(filename):
-    return send_from_directory('templates', filename)
+# API with API Key Authentication
+@app.route('/api', methods=['POST'])
+def handle_post():
+    # Check for API key in the request headers
+    api_key = request.headers.get('X-API-Key')
+    if not api_key or not verify_api_key(api_key):
+        return jsonify({"error": "Unauthorized: Invalid or missing API key"}), 401
+
+    file_path = 'templates/scams.txt'
+
+    # Check if the file exists
+    if not os.path.exists(file_path):
+        return jsonify({"error": "File not found"}), 404
+
+    # Check if the file is empty
+    if os.path.getsize(file_path) == 0:
+        return jsonify({"error": "File is empty"}), 400
+
+    # Read the content from scams.txt as plain text
+    try:
+        with open(file_path, 'r') as file:
+            scams_data = file.readlines()  # Read all lines from the file
+    except Exception as e:
+        return jsonify({"error": f"Error reading file: {e}"}), 500
+
+    # Parse the plain text data into a structured format
+    parsed_scams = []
+    for line in scams_data:
+        if line.strip():  # Skip empty lines
+            # Example format: "Scam found: http://example.com\nCategory: potential\n"
+            if line.startswith("Scam found:"):
+                url = line.split("Scam found: ")[1].strip()
+                parsed_scams.append({"url": url})
+            elif line.startswith("Category:"):
+                category = line.split("Category: ")[1].strip()
+                if parsed_scams:
+                    parsed_scams[-1]["category"] = category
+
+    # Get JSON data from the request
+    data = request.get_json()
+    if not data:
+        return jsonify({"error": "No data provided"}), 400
+
+    # Get the "urls_only" option from the request (default to False if not provided)
+    urls_only = data.get("urls_only", False)
+
+    # Filter scams based on the provided category (if any)
+    category = data['filter'].get('category') if data.get('filter') else None
+    if category:
+        filtered_data = [scam for scam in parsed_scams if scam.get("category") == category]
+    else:
+        filtered_data = parsed_scams  # Return all URLs if no category filter is provided
+
+    # Prepare the response based on the "urls_only" option
+    if urls_only:
+        # Return only the URLs as plain text (one URL per line)
+        filtered_urls = [scam["url"] for scam in filtered_data]
+        return Response("\n".join(filtered_urls), mimetype="text/plain"), 200
+    else:
+        # Return the full filtered data as JSON
+        return jsonify({"message": "Filtered URLs", "data": filtered_data}), 200
 
 # Serve static files from the EXTRACT_DIR
 @app.route('/files/<path:filename>')
