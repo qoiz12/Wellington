@@ -53,13 +53,19 @@
     <script>
         // Function to fetch and parse scams.txt
         function fetchAndParseScams() {
-            fetch('/templates/scams.txt')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Failed to fetch scams.txt');
-                    }
-                    return response.text();
-                })
+            fetch('/txt', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ urls_only: true })
+            })
+            .then(response => {
+                if (!response.ok) {
+                throw new Error('Failed to fetch scams.txt');
+                }
+                return response.text();
+            })
                 .then(data => {
                     const lines = data.split('\n').filter(line => line.trim() !== '');
                     const veryLikelyDiv = document.getElementById('very-likely');
@@ -96,7 +102,7 @@
                             domainElement.style.color = currentCategory === 'very likely' ? '#ff4444' : '#ffd700';
 
                             const imgElement = document.createElement('img');
-                            imgElement.src = `/templates/screenshots/${currentDomain}.png`;
+                            imgElement.src = `/screenshots/${currentDomain}.png`;
                             imgElement.alt = `Screenshot Of ${currentDomain}`;
                             imgElement.width = 400;
                             imgElement.height = 400;
