@@ -347,6 +347,14 @@ def index():
 def control_panel():
     return render_template('control-panel.html')
 
+@app.route('/txt', methods=['POST'])
+def scams_txt():
+    return render_template('scams.txt')
+
+@app.route('/screenshots/<path:filename>', methods=['GET'])
+def serve_screenshot(filename):
+    return send_from_directory(os.path.join('templates', SCREENSHOT_DIR), filename)
+
 @app.route('/run_command', methods=['POST'])
 @auth.login_required
 def run_command():
