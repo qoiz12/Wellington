@@ -31,7 +31,7 @@ Step 11. Change the API_KEY = "your-secret-api-key"  (replacing the quoted text 
 ```
 '{
     "filter": {
-        "category": "potential/very likely" //This can be removed to show all urls no matter the category.
+        "category": "potential/very likely"
     },
     "urls_only": true/false
     
