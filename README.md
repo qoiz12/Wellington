@@ -4,7 +4,7 @@ A Scanner/Scraper that finds Scam Sites and ranks them by potential and very lik
 - [ ] **FOCUS:** Improve the control panel, CSS changes likely.
 - [ ] **FOCUS:** Scanning Status, Time until next scan etc (in control pane).
 - [ ] Release SSL Version (does exist in my private version).
-- [ ] Make a version that finds and attributes/tags those Your File Is Ready To Download malware sites.
+- [ ] Make a version that finds and attributes/tags those Your File Is Ready To Download malware sites (also those fake mediafire download sites).
 - [X] Create API and documentation (mainly for POST requests).
 - [x] Publish Repo.
 - [x] Find a better Newly Registered Domains list.
